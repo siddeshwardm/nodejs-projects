@@ -24,10 +24,10 @@ Create a `.env` file in the root directory (you can use `.env.example` as a temp
 
 ```env
 # Database configuration
-DB_HOST=127.0.0.1
-DB_USER=root
-DB_PASSWORD=MySecurePass@123
-DB_NAME=blog_platform
+DB_HOST=YOUR_HOST
+DB_USER=YOUR_ROOT
+DB_PASSWORD=YOUR_PASSWORD
+DB_NAME=YOUR_DB_NAME
 
 # Server configuration
 PORT=3001
