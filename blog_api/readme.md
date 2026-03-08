@@ -48,4 +48,4 @@ node server.js
 Once running, the API will be available at `http://localhost:<PORT>/api`.
 
 Check all your API's using Postman : 
-(http://localhost:<PORT>/api/posts) - Example API to get all the posts
+`http://localhost:<PORT>/api/posts` - Example API to get all the posts
