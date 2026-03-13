@@ -1,28 +1,29 @@
 #!/usr/bin/env node
 
-const yargs = require("yargs");
+const yargs = require("yargs/yargs");
+const { hideBin } = require("yargs/helpers");
 const fetchMovies = require("./tmdb");
 
-const argv = yargs.option("type", {
-    alias: "t",
-    describe: "Type of movies",
-    choices: ["playing", "popular", "top", "upcoming"],
-    demandOption: true,
-}).argv;
+const argv = yargs(hideBin(process.argv))
+    .option("search", {
+        alias: "s",
+        describe: "Search movies",
+        type: "string",
+        demandOption: true,
+    })
+    .parse();
 
 async function main() {
     try {
-        const movies = await fetchMovies(argv.type);
+        const movies = await fetchMovies(argv.search);
 
-        console.log(`\nMovies (${argv.type}):\n`);
+        console.log(`\nSearch Results for "${argv.search}":\n`);
 
-        movies.slice(0, 10).forEach((movie, index) => {
-            console.log(
-                `${index + 1}. ${movie.title} ⭐ ${movie.vote_average} (Release: ${movie.release_date})`
-            );
+        movies.forEach((movie, index) => {
+            console.log(`${index + 1}. ${movie.Title} (${movie.Year})`);
         });
 
-        console.log("\n");
+        console.log("");
     } catch (error) {
         console.error("Error:", error.message);
     }

@@ -1,41 +1,25 @@
 const axios = require("axios");
 require("dotenv").config();
 
-const API_KEY = process.env.TMDB_API_KEY;
-const BASE_URL = "https://api.themoviedb.org/3/movie";
+const API_KEY = process.env.OMDB_API_KEY;
+const BASE_URL = "https://www.omdbapi.com/";
 
-async function fetchMovies(type) {
-    let endpoint = "";
-
-    switch (type) {
-        case "playing":
-            endpoint = "now_playing";
-            break;
-
-        case "popular":
-            endpoint = "popular";
-            break;
-
-        case "top":
-            endpoint = "top_rated";
-            break;
-
-        case "upcoming":
-            endpoint = "upcoming";
-            break;
-
-        default:
-            throw new Error("Invalid movie type");
-    }
-
+async function fetchMovies(search) {
     try {
-        const response = await axios.get(
-            `${BASE_URL}/${endpoint}?api_key=${API_KEY}`
-        );
+        const response = await axios.get(BASE_URL, {
+            params: {
+                apikey: API_KEY,
+                s: search
+            }
+        });
 
-        return response.data.results;
+        if (response.data.Response === "False") {
+            throw new Error(response.data.Error);
+        }
+
+        return response.data.Search;
     } catch (error) {
-        throw new Error("Failed to fetch movies from TMDB");
+        throw new Error("Failed to fetch movies");
     }
 }
 

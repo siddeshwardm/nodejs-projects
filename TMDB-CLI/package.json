@@ -14,8 +14,5 @@
     "axios": "^1.13.6",
     "dotenv": "^17.3.1",
     "yargs": "^18.0.0"
-  },
-  "bin": {
-    "tmdb-app": "./src/index.js"
   }
 }
