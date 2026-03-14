@@ -178,6 +178,4 @@ GET /shorten/:shortCode/stats
 - The URL store is **in-memory**, meaning all data is lost when the server restarts. For persistence, consider integrating a database like MongoDB or PostgreSQL.
 - Short codes are **6 characters** long, generated via `nanoid`.
 
-## 📄 License
 
-ISC
